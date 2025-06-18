@@ -18,6 +18,10 @@ A sleek and responsive weather-based fashion advisor. The **Weather Wear App** h
 - [NPM](https://www.npmjs.com/)
 - Weather API (e.g., OpenWeatherMap or similar)
 
+## Project URL
+
+- [WeatherApp](https://github.com/chondasaine/SE_PROJECT_REACT.git)
+
 ## 🚀 Getting Started
 
 1. **Clone the repo**
@@ -25,7 +29,7 @@ A sleek and responsive weather-based fashion advisor. The **Weather Wear App** h
    git clone git@github.com:chondasaine/SE_PROJECT_REACT.git
    cd SE_PROJECT_REACT
    ```
-2. npm install
+2. NPM install
 3. Add Weather API Key. Create .env file in the root directory and add: VITE_WEATHER_API_KEY=your_api_key_here
 4. Run npm run dev
 5. Open http://localhost:3000
