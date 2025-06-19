@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
+import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
-import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
-import { coordinates, APIkey } from "../../utils/constants";
 import Footer from "../Footer/Footer";
+import "./App.css";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -16,6 +16,8 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+
+  const isOpen = (modal) => activeModal === modal;
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -48,7 +50,7 @@ function App() {
       <ModalWithForm
         title="New Garment"
         buttonText="Add garment"
-        activeModal={activeModal}
+        isOpen={isOpen("add-garment")}
         handleCloseModal={handleCloseModal}
       >
         <label htmlFor="name" className="modal__label">
@@ -58,6 +60,7 @@ function App() {
             className="modal__input"
             id="name"
             placeholder="Name"
+            required
           />
         </label>
         <label htmlFor="imageUrl" className="modal__label">
@@ -65,8 +68,9 @@ function App() {
           <input
             type="url"
             className="modal__input"
-            id="imageURL"
+            id="imageUrl"
             placeholder="Image Url"
+            required
           />
         </label>
         <fieldset className="modal__radio-button">
@@ -77,6 +81,7 @@ function App() {
               className="modal__radio-input"
               id="hot"
               name="weather"
+              required
             />
             Hot
           </label>
@@ -89,6 +94,7 @@ function App() {
               className="modal__radio-input"
               id="warm"
               name="weather"
+              required
             />
             Warm
           </label>
@@ -101,13 +107,14 @@ function App() {
               className="modal__radio-input"
               id="cold"
               name="weather"
+              required
             />
             Cold
           </label>
         </fieldset>
       </ModalWithForm>
       <ItemModal
-        activeModal={activeModal}
+        isOpen={isOpen("preview")}
         card={selectedCard}
         handleCloseModal={handleCloseModal}
       />
