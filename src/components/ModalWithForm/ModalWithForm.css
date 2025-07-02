@@ -10,7 +10,6 @@
   align-items: center;
   visibility: hidden;
   border: 1px;
-  border-radius: 20px;
 }
 
 .modal__content {
@@ -35,6 +34,7 @@
   top: 20px;
   right: 28px;
   background-image: url(../../assets/closebutton.svg);
+  background-color: transparent;
   width: 20px;
   height: 20px;
   border: none;

@@ -1,0 +1,72 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("../../assets/CabinetGrotesk-Regular.woff") format("woff");
+}
+
+.modal__confirmation-form {
+  position: relative;
+  width: 670px;
+  height: 280px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 20px;
+  border: 1px;
+}
+
+.modal__close.modal__close_confirmation {
+  background-image: url(../../assets/closebutton.svg);
+  background-color: transparent;
+  padding: 0;
+}
+
+.modal__confirmation-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-top: 60px;
+}
+
+.modal__confirmation-content-sure {
+  margin-bottom: 0;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal__confirmation-content-irreversible {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal__confirmation-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.modal__confirmation-button-delete {
+  margin-top: 40px;
+  border: none;
+  background-color: transparent;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: rgba(255, 77, 0, 1);
+  cursor: pointer;
+}
+
+.modal__confirmation-button-cancel {
+  border: none;
+  background-color: transparent;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  cursor: pointer;
+}

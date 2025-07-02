@@ -17,11 +17,11 @@
 }
 
 .card__name {
+  padding: 8px;
   position: absolute;
   display: flex;
   top: 15px;
   margin: 0;
-  width: 73px;
   height: 24px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 4px;
@@ -37,4 +37,11 @@
 .card__img {
   width: 100%;
   border-radius: 19px;
+}
+
+.itemCard__text {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
 }

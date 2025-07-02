@@ -1,0 +1,112 @@
+{
+  "items": [
+    {
+      "_id": 0,
+      "name": "Beanie",
+      "weather": "cold",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2"
+    },
+    {
+      "_id": 1,
+      "name": "Boot",
+      "weather": "cold",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Boot.png?etag=0953a2ea59f1c6ebc832fabacdc9c70e"
+    },
+    {
+      "_id": 2,
+      "name": "Cap",
+      "weather": "hot",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Cap.png?etag=f3dad389b22909cafa73cff9f9a3d591"
+    },
+    {
+      "_id": 3,
+      "name": "Coat",
+      "weather": "cold",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4"
+    },
+    {
+      "_id": 5,
+      "name": "Hoodie",
+      "weather": "cold",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8"
+    },
+    {
+      "_id": 6,
+      "name": "Jacket",
+      "weather": "cold",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jacket.png?etag=f4bb188deaa25ac84ce2338be2d404ad"
+    },
+    {
+      "_id": 7,
+      "name": "Jeans",
+      "weather": "warm",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jeans.png?etag=58345e8bef1ce5f95ac882e71d309e6c"
+    },
+    {
+      "_id": 8,
+      "name": "Loafers",
+      "weather": "warm",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Loafers.png?etag=dc2d6e1ca7b297597406e35c40aef030"
+    },
+    {
+      "_id": 9,
+      "name": "Sandals",
+      "weather": "hot",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sandals.png?etag=9bea85a77c0306586d2b71a33b626d41"
+    },
+    {
+      "_id": 10,
+      "name": "Scarf",
+      "weather": "cold",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Scarf.png?etag=74efbee93810c926b5507e862c6cb76c"
+    },
+    {
+      "_id": 11,
+      "name": "Shorts",
+      "weather": "Hot",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Shorts.png?etag=d728c496643f610de8d8fea92dd915ba"
+    },
+    {
+      "_id": 12,
+      "name": "Skirt",
+      "weather": "hot",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Skirt.png?etag=27a6bea7e1b63218820d615876fa31d1"
+    },
+    {
+      "_id": 13,
+      "name": "Sneakers",
+      "weather": "warm",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sneakers.png?etag=3efeec41c1c78b8afe26859ca7fa7b6f"
+    },
+    {
+      "_id": 14,
+      "name": "Sunglasses",
+      "weather": "hot",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432"
+    },
+    {
+      "_id": 15,
+      "name": "Sweatshirt",
+      "weather": "warm",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sweatshirt.png?etag=008a9674757bea2e0bdb31242e364be0"
+    },
+    {
+      "_id": 16,
+      "name": "T-Shirt",
+      "weather": "hot",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+    },
+    {
+      "name": "Hat",
+      "imageUrl": "data:image/webp;base64,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",
+      "weather": "hot",
+      "_id": 18
+    },
+    {
+      "name": "Scarf",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRJn8UePAIFkstWQmwIh0loz6plaxRWVLMiHOqmJAYImbo5UWKDjCN9QriI4MTGyrYWXnBsemt5cUjSyOmYheVF_1Ey7wvBf4EdTmKPY498WwUk_lcckwKISI-YkiCMEP-KvSwvIoQ&usqp=CAc",
+      "weather": "cold",
+      "_id": 19
+    }
+  ]
+}
