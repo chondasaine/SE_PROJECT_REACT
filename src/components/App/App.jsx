@@ -38,6 +38,7 @@ function App() {
     setSelectedCard(card);
   };
   const handleAddClick = () => {
+    console.log("Add New clicked!");
     setActiveModal("add-garment");
   };
 
@@ -99,7 +100,7 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        setClothingItems(data);
+        setClothingItems(data.reverse());
       })
       .catch(console.error);
   }, []);
@@ -119,6 +120,7 @@ function App() {
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
                 />
               }
             ></Route>
@@ -129,6 +131,7 @@ function App() {
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  handleAddClick={handleAddClick}
                 />
               }
             ></Route>

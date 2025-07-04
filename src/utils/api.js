@@ -1,9 +1,9 @@
+import { checkResponse } from "./checkResponse.js";
+
 const baseUrl = "http://localhost:3001";
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  return fetch(`${baseUrl}/items`).then(checkResponse);
 }
 
 function saveItems({ name, imageUrl, weather }) {
@@ -15,18 +15,14 @@ function saveItems({ name, imageUrl, weather }) {
       imageUrl,
       weather,
     }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 function deleteItems({ id }) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 export { getItems, saveItems, deleteItems };
