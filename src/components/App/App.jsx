@@ -38,7 +38,6 @@ function App() {
     setSelectedCard(card);
   };
   const handleAddClick = () => {
-    console.log("Add New clicked!");
     setActiveModal("add-garment");
   };
 
@@ -94,7 +93,9 @@ function App() {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Error fetching weather:", err);
+      });
   }, []);
 
   useEffect(() => {
@@ -104,6 +105,10 @@ function App() {
       })
       .catch(console.error);
   }, []);
+
+  const filteredItems = weatherData
+    ? clothingItems.filter((item) => item.weather === weatherData.type)
+    : [];
 
   return (
     <CurrentTemperatureUnitContext.Provider
@@ -119,7 +124,7 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
-                  clothingItems={clothingItems}
+                  clothingItems={filteredItems}
                   handleAddClick={handleAddClick}
                 />
               }
@@ -130,7 +135,8 @@ function App() {
                 <Profile
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
-                  clothingItems={clothingItems}
+                  clothingItems={filteredItems}
+                  filteredItems={filteredItems}
                   handleAddClick={handleAddClick}
                 />
               }

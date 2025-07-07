@@ -1,7 +1,6 @@
 import "./ItemModal.css";
 
 function ItemModal({ isOpen, handleCloseModal, card, onRequestDelete }) {
-  console.log("Card passed to modal:", card);
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content modal__content_type_img">
