@@ -39,6 +39,16 @@
   cursor: pointer;
 }
 
+.header__auth-btn {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 1);
+  border: none;
+  cursor: pointer;
+}
+
 .header__user-container {
   display: flex;
   align-items: center;
