@@ -8,6 +8,8 @@ function Profile({
   clothingItems,
   filteredItems,
   handleAddClick,
+  currentUser,
+  onEditProfileClick,
 }) {
   return (
     <div className="profile">

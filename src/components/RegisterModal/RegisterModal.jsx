@@ -1,3 +1,4 @@
+import "../ModalWithForm/ModalWithForm.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState, useEffect } from "react";
 
@@ -8,6 +9,8 @@ export default function RegisterModal({
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -16,14 +19,23 @@ export default function RegisterModal({
     setPassword(e.target.value);
   };
 
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+  const handleImageUrlChange = (e) => {
+    setImageUrl(e.target.value);
+  };
+
   useEffect(() => {
     setEmail("");
     setPassword("");
+    setName("");
+    setImageUrl("");
   }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegister({ email, password });
+    onRegister({ email, password, name, avatar: imageUrl });
   };
 
   return (
@@ -56,6 +68,30 @@ export default function RegisterModal({
           required
           value={password}
           onChange={handlePasswordChange}
+        />
+      </label>
+      <label htmlFor="name" className="modal__label">
+        Name{" "}
+        <input
+          type="text"
+          className="modal__input"
+          id="name"
+          placeholder="Name"
+          required
+          onChange={handleNameChange}
+          value={name}
+        />
+      </label>
+      <label htmlFor="imageUrl" className="modal__label">
+        Avatar URL{" "}
+        <input
+          type="url"
+          className="modal__input"
+          id="imageUrl"
+          placeholder="Avatar Url"
+          required
+          onChange={handleImageUrlChange}
+          value={imageUrl}
         />
       </label>
     </ModalWithForm>

@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3001/se_project_express";
+const BASE_URL = "http://localhost:3001";
 
 export const registerUser = ({ name, avatar, email, password }) => {
   return fetch(`${BASE_URL}/signup`, {

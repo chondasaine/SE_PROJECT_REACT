@@ -2,6 +2,8 @@ import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { useContext } from "react";
+import CurrentUserContext from "../../Contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
 
 function Header({
@@ -15,6 +17,8 @@ function Header({
     month: "long",
     day: "numeric",
   });
+
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <header className="header">
@@ -37,12 +41,18 @@ function Header({
             </button>
             <Link to="/profile" className="header__link">
               <div className="header__user-container">
-                <p className="header__username">Terrance Tegegne</p>
-                <img
-                  src={avatar}
-                  alt="Terrance Tegegne"
-                  className="header__avatar"
-                />
+                <p className="header__username">{currentUser?.name}</p>
+                {currentUser?.avatar ? (
+                  <img
+                    src={currentUser.avatar}
+                    alt={currentUser.name}
+                    className="header__avatar"
+                  />
+                ) : (
+                  <div className="header__avatar-placeholder">
+                    {currentUser?.name?.charAt(0).toUpperCase()}
+                  </div>
+                )}
               </div>
             </Link>
           </>
