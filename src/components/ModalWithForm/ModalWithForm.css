@@ -77,6 +77,10 @@
   line-height: 20px;
 }
 
+.modal__label {
+  font-family: "Cabinet Grotesk", sans-serif;
+}
+
 .modal__label_type_radio {
   font-weight: normal;
   cursor: pointer;

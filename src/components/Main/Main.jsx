@@ -8,6 +8,7 @@ function Main({ weatherData, handleCardClick, clothingItems, handleAddClick }) {
   const filteredItems = clothingItems.filter(
     (item) => item.weather === weatherData?.type
   );
+
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   return (
     <main className="main">

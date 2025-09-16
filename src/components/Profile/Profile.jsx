@@ -9,12 +9,21 @@ function Profile({
   filteredItems,
   handleAddClick,
   currentUser,
-  onEditProfileClick,
+  handleEditProfileClick,
+  handleLogout,
 }) {
+  const userItems = clothingItems.filter(
+    (item) => item.owner === currentUser?._id
+  );
+
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar />
+        <SideBar
+          currentUser={currentUser}
+          handleEditProfileClick={handleEditProfileClick}
+          handleLogout={handleLogout}
+        />
         <div className="profile-section__info">
           <p className="profile-section__info-items">Your Items</p>
           <button

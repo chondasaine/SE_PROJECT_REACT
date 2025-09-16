@@ -1,10 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
 import { coordinates, APIkey } from "../../utils/constants";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { getItems, saveItems, deleteItems } from "../../utils/API";
 import { registerUser, loginUser, checkToken } from "../../utils/auth";
-import { useContext } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
@@ -17,6 +17,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import CurrentUserContext from "../../Contexts/CurrentUserContext";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import "./App.css";
 
 function App() {
@@ -35,7 +36,8 @@ function App() {
   const [cardToDeleteId, setCardToDeleteId] = useState(null);
   const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
-  const currentUser = useContext(CurrentUserContext);
+  const [currentUser, setCurrentUser] = useState(null);
+  const navigate = useNavigate();
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -59,6 +61,10 @@ function App() {
     setActiveModal("add-garment");
   };
 
+  const handleEditProfileClick = () => {
+    setActiveModal("edit-profile");
+  };
+
   const handleCloseModal = () => {
     setActiveModal("");
   };
@@ -71,6 +77,12 @@ function App() {
   const handleCancelDelete = () => {
     setCardToDeleteId(null);
     handleCloseModal();
+  };
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    setActiveModal("");
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
@@ -125,8 +137,15 @@ function App() {
           localStorage.setItem("jwt", res.token);
           setIsLoggedIn(true);
           setLoginModalOpen(false);
+          return checkToken(res.token);
         } else {
           console.error("No token received:", err);
+        }
+      })
+      .then((userData) => {
+        if (userData) {
+          setCurrentUser(userData);
+          navigate("/");
         }
       })
       .catch((err) => {
@@ -148,6 +167,7 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
+        console.log("Fetched items:", data);
         setClothingItems(data.reverse());
       })
       .catch(console.error);
@@ -159,6 +179,7 @@ function App() {
       checkToken(token)
         .then((data) => {
           setIsLoggedIn(true);
+          setCurrentUser(data);
         })
         .catch((err) => {
           console.error("token check failed:", err);
@@ -172,7 +193,7 @@ function App() {
     : [];
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
@@ -181,6 +202,7 @@ function App() {
             <Header
               handleAddClick={handleAddClick}
               weatherData={weatherData}
+              isLoggedIn={isLoggedIn}
               onLogIn={handleLoginClick}
               onRegister={handleRegisterClick}
             />
@@ -206,6 +228,9 @@ function App() {
                       clothingItems={filteredItems}
                       filteredItems={filteredItems}
                       handleAddClick={handleAddClick}
+                      currentUser={currentUser}
+                      handleLogout={handleLogout}
+                      handleEditProfileClick={handleEditProfileClick}
                     />
                   </ProtectedRoute>
                 }
@@ -249,6 +274,12 @@ function App() {
             isOpen={isLoginModalOpen}
             handleCloseModal={handleCloseLoginModal}
             onLogIn={handleLogin}
+          />
+          <EditProfileModal
+            isOpen={isOpen("edit-profile")}
+            handleCloseModal={handleCloseModal}
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
           />
         </div>
       </CurrentTemperatureUnitContext.Provider>

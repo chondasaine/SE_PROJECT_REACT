@@ -7,8 +7,8 @@ export default function EditProfileModal({
   onUpdateProfile,
   currentUser,
 }) {
-  const [name, setName] = useState(currentUser.name || "");
-  const [avatar, setAvatar] = useState(currentUser.avatar || "");
+  const [name, setName] = useState(currentUser?.name || "");
+  const [avatar, setAvatar] = useState(currentUser?.avatar || "");
 
   useEffect(() => {
     if (isOpen) {

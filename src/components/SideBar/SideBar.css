@@ -5,13 +5,36 @@
 
 .sidebar {
   display: flex;
+  flex-direction: column;
   width: 229px;
   gap: 16px;
+}
+
+.sidebar__user-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .sidebar__avatar {
   width: 56px;
   height: 56px;
+  border-radius: 50%;
+}
+
+.sidebar__avatar-placeholder {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #ccc;
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .sidebar__username {
@@ -21,4 +44,15 @@
   font-size: 20px;
   line-height: 1;
   color: rgba(0, 0, 0, 1);
+}
+
+.sidebar__button {
+  background: none;
+  border: none;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 14px;
+  color: black;
+  cursor: pointer;
+  padding: 4px 0;
+  text-align: left;
 }
