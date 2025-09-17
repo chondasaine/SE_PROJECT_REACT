@@ -5,7 +5,7 @@ function ItemCard({ item, handleCardClick, handleCardDeletion }) {
     handleCardClick(item);
   };
   return (
-    <li className="card">
+    <li className="card" key={item._id}>
       <h2 className="card__name">{item.name}</h2>
       <img
         onClick={cardClick}

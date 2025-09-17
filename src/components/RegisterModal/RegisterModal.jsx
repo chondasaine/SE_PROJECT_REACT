@@ -6,6 +6,7 @@ export default function RegisterModal({
   isOpen,
   handleCloseModal,
   onRegister,
+  handleSwitchToLogin,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -94,6 +95,15 @@ export default function RegisterModal({
           value={imageUrl}
         />
       </label>
+      <div className="modal__button-row">
+        <button
+          type="button"
+          className="modal__button modal__button-secondary"
+          onClick={handleSwitchToLogin}
+        >
+          or Log In
+        </button>
+      </div>
     </ModalWithForm>
   );
 }

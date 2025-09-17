@@ -5,11 +5,8 @@ import "./Main.css";
 import ClothesSection from "../ClothesSection/ClothesSection";
 
 function Main({ weatherData, handleCardClick, clothingItems, handleAddClick }) {
-  const filteredItems = clothingItems.filter(
-    (item) => item.weather === weatherData?.type
-  );
-
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
   return (
     <main className="main">
       <WeatherCard weatherData={weatherData} />
@@ -24,7 +21,9 @@ function Main({ weatherData, handleCardClick, clothingItems, handleAddClick }) {
         <ClothesSection
           handleCardClick={handleCardClick}
           weatherData={weatherData}
-          clothingItems={filteredItems}
+          clothingItems={clothingItems.filter(
+            (item) => item.weather === weatherData?.type
+          )}
           handleAddClick={handleAddClick}
         />
       </section>

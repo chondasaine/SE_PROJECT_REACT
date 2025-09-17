@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
 import { coordinates, APIkey } from "../../utils/constants";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { getItems, saveItems, deleteItems } from "../../utils/API";
+import {
+  getItems,
+  saveItems,
+  deleteItems,
+  updateUserProfile,
+} from "../../utils/API";
 import { registerUser, loginUser, checkToken } from "../../utils/auth";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -85,6 +90,16 @@ function App() {
     setActiveModal("");
   };
 
+  const handleSwitchToLogin = () => {
+    setRegisterModalOpen(false);
+    setLoginModalOpen(true);
+  };
+
+  const handleSwitchToRegister = () => {
+    setLoginModalOpen(false);
+    setRegisterModalOpen(true);
+  };
+
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
     const token = localStorage.getItem("jwt");
     saveItems({ name, imageUrl, weather }, token)
@@ -105,7 +120,7 @@ function App() {
       return;
     }
 
-    deleteItems({ id: cardToDeleteId }, token)
+    deleteItems(cardToDeleteId, token)
       .then(() => {
         setClothingItems((prevItems) =>
           prevItems.filter((item) => item._id !== cardToDeleteId)
@@ -153,6 +168,18 @@ function App() {
       });
   };
 
+  const handleUpdateProfile = ({ name, avatar }) => {
+    const token = localStorage.getItem("jwt");
+    updateUserProfile({ name, avatar }, token)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.error("Profile update failed:", err);
+      });
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -188,10 +215,6 @@ function App() {
     }
   }, []);
 
-  const filteredItems = weatherData
-    ? clothingItems.filter((item) => item.weather === weatherData.type)
-    : [];
-
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <CurrentTemperatureUnitContext.Provider
@@ -213,7 +236,7 @@ function App() {
                   <Main
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
-                    clothingItems={filteredItems}
+                    clothingItems={clothingItems}
                     handleAddClick={handleAddClick}
                   />
                 }
@@ -225,8 +248,7 @@ function App() {
                     <Profile
                       weatherData={weatherData}
                       handleCardClick={handleCardClick}
-                      clothingItems={filteredItems}
-                      filteredItems={filteredItems}
+                      clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
                       currentUser={currentUser}
                       handleLogout={handleLogout}
@@ -269,17 +291,20 @@ function App() {
             isOpen={isRegisterModalOpen}
             handleCloseModal={handleCloseRegisterModal}
             onRegister={handleRegister}
+            handleSwitchToLogin={handleSwitchToLogin}
           />
           <LoginModal
             isOpen={isLoginModalOpen}
             handleCloseModal={handleCloseLoginModal}
             onLogIn={handleLogin}
+            handleSwitchToRegister={handleSwitchToRegister}
           />
           <EditProfileModal
             isOpen={isOpen("edit-profile")}
             handleCloseModal={handleCloseModal}
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
+            onUpdateProfile={handleUpdateProfile}
           />
         </div>
       </CurrentTemperatureUnitContext.Provider>

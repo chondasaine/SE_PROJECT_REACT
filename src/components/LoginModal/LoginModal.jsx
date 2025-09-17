@@ -2,7 +2,12 @@ import "../ModalWithForm/ModalWithForm.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState, useEffect } from "react";
 
-export default function LoginModal({ isOpen, handleCloseModal, onLogIn }) {
+export default function LoginModal({
+  isOpen,
+  handleCloseModal,
+  onLogIn,
+  handleSwitchToRegister,
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -55,6 +60,15 @@ export default function LoginModal({ isOpen, handleCloseModal, onLogIn }) {
           onChange={handlePasswordChange}
         />
       </label>
+      <div className="modal__button-group">
+        <button
+          type="button"
+          className="modal__button modal__button-secondary"
+          onClick={handleSwitchToRegister}
+        >
+          or Sign up
+        </button>
+      </div>
     </ModalWithForm>
   );
 }

@@ -9,11 +9,13 @@ export default function EditProfileModal({
 }) {
   const [name, setName] = useState(currentUser?.name || "");
   const [avatar, setAvatar] = useState(currentUser?.avatar || "");
+  const [avatarError, setAvatarError] = useState(false);
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && currentUser) {
       setName(currentUser.name || "");
       setAvatar(currentUser.avatar || "");
+      setAvatarError(false);
     }
   }, [isOpen, currentUser]);
 
@@ -25,7 +27,7 @@ export default function EditProfileModal({
   return (
     <ModalWithForm
       title="Edit Profile"
-      buttonText="Save"
+      buttonText="Save Changes"
       isOpen={isOpen}
       handleCloseModal={handleCloseModal}
       onSubmit={handleSubmit}

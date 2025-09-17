@@ -6,24 +6,23 @@ function Profile({
   handleCardClick,
   weatherData,
   clothingItems,
-  filteredItems,
   handleAddClick,
   currentUser,
   handleEditProfileClick,
   handleLogout,
 }) {
-  const userItems = clothingItems.filter(
-    (item) => item.owner === currentUser?._id
-  );
+  const userItems = clothingItems.filter((item) => {
+    return item.owner === currentUser?._id;
+  });
 
   return (
     <div className="profile">
-      <section className="profile__sidebar">
-        <SideBar
-          currentUser={currentUser}
-          handleEditProfileClick={handleEditProfileClick}
-          handleLogout={handleLogout}
-        />
+      <SideBar
+        currentUser={currentUser}
+        handleEditProfileClick={handleEditProfileClick}
+        handleLogout={handleLogout}
+      />
+      <section className="profile__clothes-items">
         <div className="profile-section__info">
           <p className="profile-section__info-items">Your Items</p>
           <button
@@ -34,12 +33,10 @@ function Profile({
             + Add New
           </button>
         </div>
-      </section>
-      <section className="profile__clothes-items">
         <ClothesSection
           weatherData={weatherData}
           handleCardClick={handleCardClick}
-          clothingItems={filteredItems}
+          clothingItems={userItems}
           handleAddClick={handleAddClick}
         />
       </section>

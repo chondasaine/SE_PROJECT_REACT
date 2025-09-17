@@ -104,6 +104,11 @@
   margin-right: 8px;
 }
 
+.modal__button-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 2px;
+}
 .modal__submit {
   width: 124px;
   height: 36px;
@@ -121,4 +126,15 @@
 
 .modal__submit:hover {
   background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal__button-secondary {
+  background: none;
+  border: none;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 14px;
+  color: black;
+  cursor: pointer;
+  padding: 4px 0;
+  text-align: left;
 }

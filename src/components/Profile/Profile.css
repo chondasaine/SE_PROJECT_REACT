@@ -5,7 +5,6 @@
 
 .profile {
   display: flex;
-  flex-direction: column;
 }
 
 .profile__sidebar {
@@ -38,5 +37,5 @@
 
 .profile__clothes-items {
   width: 100%;
-  margin-left: 232px;
+  margin-left: 65px;
 }

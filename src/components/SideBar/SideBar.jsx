@@ -5,7 +5,7 @@ function SideBar({ currentUser, handleEditProfileClick, handleLogout }) {
   const [avatarError, setAvatarError] = useState(false);
   return (
     <div className="sidebar">
-      <div className="sidebar__user-row">
+      <div className="sidebar__edit-profile">
         {currentUser?.avatar && !avatarError ? (
           <img
             className="sidebar__avatar"
@@ -14,19 +14,20 @@ function SideBar({ currentUser, handleEditProfileClick, handleLogout }) {
             onError={() => setAvatarError(true)}
           />
         ) : (
-          <div className="sidebar__avatar">
+          <div className="sidebar__avatar-placeholder">
             {currentUser?.name?.charAt(0).toUpperCase()}
           </div>
         )}
         <p className="sidebar__username">{currentUser?.name}</p>
       </div>
-      <div className="sidebar__actions"></div>
-      <button className="sidebar__button" onClick={handleEditProfileClick}>
-        Change profile data
-      </button>
-      <button className="sidebar__button" onClick={handleLogout}>
-        Log out
-      </button>
+      <div className="sidebar__actions">
+        <button className="sidebar__button" onClick={handleEditProfileClick}>
+          Change profile data
+        </button>
+        <button className="sidebar__button" onClick={handleLogout}>
+          Log out
+        </button>
+      </div>
     </div>
   );
 }
