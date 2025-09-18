@@ -31,7 +31,6 @@ export default function LoginModal({
   return (
     <ModalWithForm
       title="Log In"
-      buttonText="Login"
       isOpen={isOpen}
       handleCloseModal={handleCloseModal}
       onSubmit={handleSubmit}
@@ -61,9 +60,12 @@ export default function LoginModal({
         />
       </label>
       <div className="modal__button-group">
+        <button type="submit" className="modal__submit modal__submit-primary">
+          Log In
+        </button>
         <button
           type="button"
-          className="modal__button modal__button-secondary"
+          className="modal__submit modal__submit-secondary"
           onClick={handleSwitchToRegister}
         >
           or Sign up

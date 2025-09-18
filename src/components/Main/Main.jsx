@@ -4,7 +4,13 @@ import CurrentTemperatureUnitContext from "../../Contexts/CurrentTemperatureUnit
 import "./Main.css";
 import ClothesSection from "../ClothesSection/ClothesSection";
 
-function Main({ weatherData, handleCardClick, clothingItems, handleAddClick }) {
+function Main({
+  weatherData,
+  handleCardClick,
+  clothingItems,
+  handleAddClick,
+  onCardLike,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   return (
@@ -25,6 +31,7 @@ function Main({ weatherData, handleCardClick, clothingItems, handleAddClick }) {
             (item) => item.weather === weatherData?.type
           )}
           handleAddClick={handleAddClick}
+          onCardLike={onCardLike}
         />
       </section>
     </main>

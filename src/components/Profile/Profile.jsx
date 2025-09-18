@@ -10,6 +10,7 @@ function Profile({
   currentUser,
   handleEditProfileClick,
   handleLogout,
+  onCardLike,
 }) {
   const userItems = clothingItems.filter((item) => {
     return item.owner === currentUser?._id;
@@ -38,6 +39,7 @@ function Profile({
           handleCardClick={handleCardClick}
           clothingItems={userItems}
           handleAddClick={handleAddClick}
+          onCardLike={onCardLike}
         />
       </section>
     </div>

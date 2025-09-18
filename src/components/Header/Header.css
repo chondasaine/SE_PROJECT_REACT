@@ -67,6 +67,7 @@
   width: 40px;
   height: 40px;
   border: 1px;
+  border-radius: 50%;
   color: rgba(0, 0, 0, 0.5);
 }
 

@@ -31,6 +31,26 @@ function deleteItems(id, token) {
   }).then(checkResponse);
 }
 
+function addCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
+function removeCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
 export function updateUserProfile(data, token) {
   return fetch("http://localhost:3001/users/me", {
     method: "PATCH",
@@ -48,4 +68,4 @@ export function updateUserProfile(data, token) {
     return res.json();
   });
 }
-export { getItems, saveItems, deleteItems };
+export { getItems, saveItems, deleteItems, addCardLike, removeCardLike };

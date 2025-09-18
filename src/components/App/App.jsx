@@ -8,6 +8,8 @@ import {
   saveItems,
   deleteItems,
   updateUserProfile,
+  addCardLike,
+  removeCardLike,
 } from "../../utils/API";
 import { registerUser, loginUser, checkToken } from "../../utils/auth";
 import Header from "../Header/Header";
@@ -41,12 +43,27 @@ function App() {
   const [cardToDeleteId, setCardToDeleteId] = useState(null);
   const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
   const navigate = useNavigate();
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      checkToken(token)
+        .then((data) => {
+          setIsLoggedIn(true);
+          setCurrentUser(data);
+        })
+        .catch((err) => {
+          console.error("token check failed:", err);
+          localStorage.removeItem("jwt");
+        });
+    }
+  }, []);
 
   const isOpen = (modal) => activeModal === modal;
   const handleRegisterClick = () => {
@@ -86,7 +103,7 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
-    setCurrentUser(null);
+    setCurrentUser({});
     setActiveModal("");
   };
 
@@ -136,7 +153,6 @@ function App() {
   const handleRegister = (data) => {
     registerUser(data)
       .then((res) => {
-        console.log("Registered:", res);
         setIsLoggedIn(true);
         setRegisterModalOpen(false);
       })
@@ -180,6 +196,22 @@ function App() {
       });
   };
 
+  const handleCardLike = ({ _id, likes }) => {
+    const token = localStorage.getItem("jwt");
+    const isLiked = likes.includes(currentUser._id);
+
+    const request = isLiked
+      ? removeCardLike(_id, token)
+      : addCardLike(_id, token);
+    request
+      .then((res) => {
+        setClothingItems((prevItems) =>
+          prevItems.map((item) => (item._id === res._id ? res : item))
+        );
+      })
+      .catch((err) => console.error("Like toggle failed:", err));
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -194,25 +226,9 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        console.log("Fetched items:", data);
         setClothingItems(data.reverse());
       })
       .catch(console.error);
-  }, []);
-
-  useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      checkToken(token)
-        .then((data) => {
-          setIsLoggedIn(true);
-          setCurrentUser(data);
-        })
-        .catch((err) => {
-          console.error("token check failed:", err);
-          localStorage.removeItem("jwt");
-        });
-    }
   }, []);
 
   return (
@@ -238,6 +254,7 @@ function App() {
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     handleAddClick={handleAddClick}
+                    onCardLike={handleCardLike}
                   />
                 }
               ></Route>
@@ -253,6 +270,7 @@ function App() {
                       currentUser={currentUser}
                       handleLogout={handleLogout}
                       handleEditProfileClick={handleEditProfileClick}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }
