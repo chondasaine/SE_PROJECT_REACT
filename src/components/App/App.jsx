@@ -11,7 +11,12 @@ import {
   addCardLike,
   removeCardLike,
 } from "../../utils/API";
-import { registerUser, loginUser, checkToken } from "../../utils/auth";
+import {
+  registerUser,
+  loginUser,
+  checkToken,
+  getUserProfile,
+} from "../../utils/auth";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
@@ -152,7 +157,15 @@ function App() {
 
   const handleRegister = (data) => {
     registerUser(data)
+      .then(() => {
+        return loginUser({ email: data.email, password: data.password });
+      })
       .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        return getUserProfile(res.token);
+      })
+      .then((userData) => {
+        setCurrentUser(userData);
         setIsLoggedIn(true);
         setRegisterModalOpen(false);
       })
@@ -162,7 +175,7 @@ function App() {
   };
 
   const handleLogin = (data) => {
-    loginUser(data)
+    return loginUser(data)
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
@@ -170,7 +183,7 @@ function App() {
           setLoginModalOpen(false);
           return checkToken(res.token);
         } else {
-          console.error("No token received:", err);
+          throw new Error("No token received");
         }
       })
       .then((userData) => {
@@ -181,6 +194,7 @@ function App() {
       })
       .catch((err) => {
         console.error("Login error:", err);
+        throw err;
       });
   };
 

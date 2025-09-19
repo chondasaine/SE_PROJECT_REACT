@@ -10,6 +10,7 @@ export default function LoginModal({
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [authError, setAuthError] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -19,15 +20,21 @@ export default function LoginModal({
   };
 
   useEffect(() => {
-    setEmail("");
-    setPassword("");
+    if (isOpen) {
+      setEmail("");
+      setPassword("");
+      setAuthError("");
+    }
   }, [isOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogIn({ email, password });
+    setAuthError("");
+    onLogIn({ email, password }).catch((err) => {
+      console.error("Login error:", err);
+      setAuthError("Email or password is incorrect");
+    });
   };
-
   return (
     <ModalWithForm
       title="Log In"
@@ -47,7 +54,7 @@ export default function LoginModal({
           onChange={handleEmailChange}
         />
       </label>
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="password" className="modal__label">
         Password{" "}
         <input
           type="password"
@@ -59,6 +66,7 @@ export default function LoginModal({
           onChange={handlePasswordChange}
         />
       </label>
+      {authError && <span className="modal__error">{authError}</span>}
       <div className="modal__button-group">
         <button type="submit" className="modal__submit modal__submit-primary">
           Log In

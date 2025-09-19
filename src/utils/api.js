@@ -52,7 +52,7 @@ function removeCardLike(id, token) {
 }
 
 export function updateUserProfile(data, token) {
-  return fetch("http://localhost:3001/users/me", {
+  return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

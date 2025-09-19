@@ -38,7 +38,14 @@ export default function RegisterModal({
     setNameError(value.trim() ? "" : "Name is required");
   };
   const handleImageUrlChange = (e) => {
-    setImageUrl(e.target.value);
+    const value = e.target.value;
+    setImageUrl(value);
+    try {
+      new URL(value);
+      setAvatarError(false);
+    } catch {
+      setAvatarError(true);
+    }
   };
 
   useEffect(() => {
@@ -50,9 +57,7 @@ export default function RegisterModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     let hasError = false;
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email.trim() || !emailRegex.test(email)) {
       setEmailError("Invalid email format");
@@ -60,7 +65,6 @@ export default function RegisterModal({
     } else {
       setEmailError("");
     }
-
     if (!password.trim() || password.length < 6) {
       setPasswordError("Password must be at least 6 characters");
       hasError = true;

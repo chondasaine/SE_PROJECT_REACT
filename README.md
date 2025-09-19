@@ -17,6 +17,8 @@ A sleek and responsive weather-based fashion advisor. The **Weather Wear App** h
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [NPM](https://www.npmjs.com/)
 - Weather API (e.g., OpenWeatherMap or similar)
+- [Render](https://se-project-express-ifiu.onrender.com)
+- [MongoDBAtlas](https://www.mongodb.com/)
 
 ## Project URL
 
