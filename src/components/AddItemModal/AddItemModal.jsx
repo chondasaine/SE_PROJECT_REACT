@@ -43,7 +43,7 @@ export default function AddItemModal({
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="name-new-garment"
           placeholder="Name"
           required
           onChange={handleNameChange}

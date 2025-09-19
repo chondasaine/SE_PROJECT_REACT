@@ -10,7 +10,7 @@ import {
   updateUserProfile,
   addCardLike,
   removeCardLike,
-} from "../../utils/API";
+} from "../../utils/api.js";
 import {
   registerUser,
   loginUser,

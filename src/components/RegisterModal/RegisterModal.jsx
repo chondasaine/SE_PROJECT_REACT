@@ -135,7 +135,7 @@ export default function RegisterModal({
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="name-register"
           placeholder="Name"
           required
           onChange={handleNameChange}
