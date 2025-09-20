@@ -24,6 +24,12 @@ A sleek and responsive weather-based fashion advisor. The **Weather Wear App** h
 ## Project URL
 
 - [WeatherApp](https://github.com/chondasaine/SE_PROJECT_REACT.git)
+- [Render](https://se-project-express-ifiu.onrender.com/signup)
+- [Render](https://se-project-express-ifiu.onrender.com/signin)
+- [Render](https://se-project-express-ifiu.onrender.com/users)
+- [Render](https://se-project-express-ifiu.onrender.com/cards)
+- [Render](https://se-project-express-ifiu.onrender.com/users)
+- [Render] (https://se-project-express-ifiu.onrender.com/users/:id)
 
 ## 🚀 Getting Started
 
