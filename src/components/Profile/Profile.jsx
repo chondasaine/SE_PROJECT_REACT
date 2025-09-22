@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import CurrentUserContext from "../../Contexts/CurrentUserContext.jsx";
 import SideBar from "../Sidebar/Sidebar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import "./Profile.css";
@@ -7,11 +9,11 @@ function Profile({
   weatherData,
   clothingItems,
   handleAddClick,
-  currentUser,
   handleEditProfileClick,
   handleLogout,
   onCardLike,
 }) {
+  const { currentUser } = useContext(CurrentUserContext);
   const userItems = clothingItems.filter((item) => {
     return item.owner === currentUser?._id;
   });
@@ -19,7 +21,6 @@ function Profile({
   return (
     <div className="profile">
       <SideBar
-        currentUser={currentUser}
         handleEditProfileClick={handleEditProfileClick}
         handleLogout={handleLogout}
       />

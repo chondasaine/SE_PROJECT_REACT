@@ -59,13 +59,21 @@ export function updateUserProfile(data, token) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(data),
-  }).then((res) => {
-    if (!res.ok) {
-      return res.json().then((err) => {
-        throw new Error(err.message || "Failed to update profile");
-      });
-    }
-    return res.json();
-  });
+  })
+    .then(checkResponse)
+    .catch((err) => {
+      console.error("Profile update failed:", err.message);
+    });
 }
+
+export function getUserData(token) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  }).then(checkResponse);
+}
+
 export { getItems, saveItems, deleteItems, addCardLike, removeCardLike };

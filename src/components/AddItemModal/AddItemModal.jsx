@@ -38,7 +38,7 @@ export default function AddItemModal({
       handleCloseModal={handleCloseModal}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="name-new-garment" className="modal__label">
         Name{" "}
         <input
           type="text"
@@ -50,12 +50,12 @@ export default function AddItemModal({
           value={name}
         />
       </label>
-      <label htmlFor="imageUrl" className="modal__label">
+      <label htmlFor="imageUrl-new-garment" className="modal__label">
         Image{" "}
         <input
           type="url"
           className="modal__input"
-          id="imageUrl"
+          id="imageUrl-new-garment"
           placeholder="Image Url"
           required
           onChange={handleImageUrlChange}

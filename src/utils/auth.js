@@ -1,4 +1,5 @@
 const BASE_URL = "http://localhost:3001";
+import { checkResponse } from "./checkResponse.js";
 
 export const registerUser = ({ name, avatar, email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -7,12 +8,11 @@ export const registerUser = ({ name, avatar, email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then((res) => {
-    if (!res.ok) {
-      throw new Error("Registration failed");
-    }
-    return res.json();
-  });
+  })
+    .then(checkResponse)
+    .catch((err) => {
+      console.error("Registration failed:", err.message);
+    });
 };
 
 export const loginUser = ({ email, password }) => {
@@ -22,21 +22,11 @@ export const loginUser = ({ email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then((res) => {
-    if (!res.ok) {
-      return res.text().then((text) => {
-        let errMsg = "Login failed";
-        try {
-          const errorData = JSON.parse(text);
-          errMsg = errorData?.message || errMsg;
-        } catch {
-          errMsg = `Login failed with status ${res.status}`;
-        }
-        return Promise.reject(new Error(errMsg));
-      });
-    }
-    return res.json();
-  });
+  })
+    .then(checkResponse)
+    .catch((err) => {
+      console.error("Login failed:", err.message);
+    });
 };
 
 export const checkToken = (token) => {
@@ -46,12 +36,11 @@ export const checkToken = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then((res) => {
-    if (!res.ok) {
-      throw new Error("Token validation failed");
-    }
-    return res.json();
-  });
+  })
+    .then(checkResponse)
+    .catch((err) => {
+      console.error("Token Validation failed:", err.message);
+    });
 };
 
 export const getUserProfile = (token) => {
@@ -61,10 +50,9 @@ export const getUserProfile = (token) => {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-  }).then((res) => {
-    if (!res.ok) {
-      throw new Error("Failed to fetch user profile");
-    }
-    return res.json();
-  });
+  })
+    .then(checkResponse)
+    .catch((err) => {
+      console.error("Failed to Fetch User Profile:", err.message);
+    });
 };

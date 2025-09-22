@@ -10,13 +10,9 @@ import {
   updateUserProfile,
   addCardLike,
   removeCardLike,
+  getUserData,
 } from "../../utils/api.js";
-import {
-  registerUser,
-  loginUser,
-  checkToken,
-  getUserProfile,
-} from "../../utils/auth";
+import { registerUser, loginUser, checkToken } from "../../utils/auth";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import ItemModal from "../ItemModal/ItemModal";
@@ -49,6 +45,7 @@ function App() {
   const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const token = localStorage.getItem("jwt");
   const navigate = useNavigate();
 
   const handleToggleSwitchChange = () => {
@@ -69,6 +66,16 @@ function App() {
         });
     }
   }, []);
+
+  useEffect(() => {
+    if (token) {
+      getUserData(token)
+        .then(setCurrentUser)
+        .catch((err) => {
+          console.error("Failed to fetch user data:", err.message);
+        });
+    }
+  }, [token]);
 
   const isOpen = (modal) => activeModal === modal;
   const handleRegisterClick = () => {
@@ -109,7 +116,7 @@ function App() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     setCurrentUser({});
-    setActiveModal("");
+    handleCloseModal();
   };
 
   const handleSwitchToLogin = () => {
@@ -281,7 +288,6 @@ function App() {
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
-                      currentUser={currentUser}
                       handleLogout={handleLogout}
                       handleEditProfileClick={handleEditProfileClick}
                       onCardLike={handleCardLike}
@@ -334,7 +340,6 @@ function App() {
           <EditProfileModal
             isOpen={isOpen("edit-profile")}
             handleCloseModal={handleCloseModal}
-            currentUser={currentUser}
             setCurrentUser={setCurrentUser}
             onUpdateProfile={handleUpdateProfile}
           />

@@ -1,8 +1,14 @@
+import { useContext } from "react";
+import CurrentUserContext from "../../Contexts/CurrentUserContext.jsx";
 import { useState } from "react";
 import "./SideBar.css";
 
-function SideBar({ currentUser, handleEditProfileClick, handleLogout }) {
+function SideBar({ handleEditProfileClick, handleLogout }) {
+  const { currentUser } = useContext(CurrentUserContext);
   const [avatarError, setAvatarError] = useState(false);
+
+  if (!currentUser) return null;
+
   return (
     <div className="sidebar">
       <div className="sidebar__edit-profile">
