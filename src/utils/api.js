@@ -3,7 +3,12 @@ import { checkResponse } from "./checkResponse.js";
 const baseUrl = "http://localhost:3001";
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then(checkResponse);
+  return fetch(`${baseUrl}/items`)
+    .then(checkResponse)
+    .catch((err) => {
+      console.error("Failed to fetch items:", err.message);
+      throw err;
+    });
 }
 
 function saveItems({ name, imageUrl, weather }, token) {
@@ -18,7 +23,12 @@ function saveItems({ name, imageUrl, weather }, token) {
       imageUrl,
       weather,
     }),
-  }).then(checkResponse);
+  })
+    .then(checkResponse)
+    .catch((err) => {
+      console.error("Failed to save items:", err.message);
+      throw err;
+    });
 }
 
 function deleteItems(id, token) {
@@ -28,7 +38,12 @@ function deleteItems(id, token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  })
+    .then(checkResponse)
+    .catch((err) => {
+      console.error("Failed to delete items:", err.message);
+      throw err;
+    });
 }
 
 function addCardLike(id, token) {
@@ -38,7 +53,12 @@ function addCardLike(id, token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  })
+    .then(checkResponse)
+    .catch((err) => {
+      console.error("Failed to like item:", err.message);
+      throw err;
+    });
 }
 
 function removeCardLike(id, token) {
@@ -48,7 +68,12 @@ function removeCardLike(id, token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  })
+    .then(checkResponse)
+    .catch((err) => {
+      console.error("Failed to remove like:", err.message);
+      throw err;
+    });
 }
 
 export function updateUserProfile(data, token) {
@@ -63,6 +88,7 @@ export function updateUserProfile(data, token) {
     .then(checkResponse)
     .catch((err) => {
       console.error("Profile update failed:", err.message);
+      throw err;
     });
 }
 
@@ -73,7 +99,20 @@ export function getUserData(token) {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-  }).then(checkResponse);
+  })
+    .then(checkResponse)
+    .catch((err) => {
+      console.error("Failed to get user:", err.message);
+      throw err;
+    });
 }
 
-export { getItems, saveItems, deleteItems, addCardLike, removeCardLike };
+export {
+  getItems,
+  saveItems,
+  deleteItems,
+  addCardLike,
+  removeCardLike,
+  updateUserProfile,
+  getUserData,
+};

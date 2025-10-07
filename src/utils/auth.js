@@ -12,6 +12,7 @@ export const registerUser = ({ name, avatar, email, password }) => {
     .then(checkResponse)
     .catch((err) => {
       console.error("Registration failed:", err.message);
+      throw err;
     });
 };
 
@@ -26,6 +27,7 @@ export const loginUser = ({ email, password }) => {
     .then(checkResponse)
     .catch((err) => {
       console.error("Login failed:", err.message);
+      throw err;
     });
 };
 
@@ -40,6 +42,7 @@ export const checkToken = (token) => {
     .then(checkResponse)
     .catch((err) => {
       console.error("Token Validation failed:", err.message);
+      throw err;
     });
 };
 
@@ -53,6 +56,7 @@ export const getUserProfile = (token) => {
   })
     .then(checkResponse)
     .catch((err) => {
-      console.error("Failed to Fetch User Profile:", err.message);
+      console.error("Failed to fetch user profile:", err.message);
+      throw err;
     });
 };

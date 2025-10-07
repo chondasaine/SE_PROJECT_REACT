@@ -7,7 +7,7 @@ export const checkResponse = async (res) => {
   try {
     const text = await res.text();
     const errorData = JSON.parse(text);
-    errMsg = errorData?.message || errMsg;
+    errMsg = `${res.status} ${errorData?.message || errMsg}`;
   } catch {}
 
   return Promise.reject(new Error(errMsg));
