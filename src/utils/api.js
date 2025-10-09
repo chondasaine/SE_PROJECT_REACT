@@ -1,6 +1,5 @@
 import { checkResponse } from "./checkResponse.js";
-
-const baseUrl = "http://localhost:3001";
+import { baseUrl } from "../utils/constants.js";
 
 function getItems() {
   return fetch(`${baseUrl}/items`)
@@ -76,7 +75,7 @@ function removeCardLike(id, token) {
     });
 }
 
-export function updateUserProfile(data, token) {
+function updateUserProfile(data, token) {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
@@ -92,7 +91,7 @@ export function updateUserProfile(data, token) {
     });
 }
 
-export function getUserData(token) {
+function getUserData(token) {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {

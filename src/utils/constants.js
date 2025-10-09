@@ -115,3 +115,8 @@ export const coordinates = {
 };
 
 export const APIkey = "6f1ea0c61487c1fe8fb97e0bf13d728b";
+
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwr.h4ck.me"
+    : "http://localhost:3001";
