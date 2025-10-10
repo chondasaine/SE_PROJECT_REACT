@@ -169,7 +169,7 @@ function App() {
       })
       .then((res) => {
         localStorage.setItem("jwt", res.token);
-        return getUserProfile(res.token);
+        return getUserData(res.token);
       })
       .then((userData) => {
         setCurrentUser(userData);
