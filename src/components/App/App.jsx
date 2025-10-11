@@ -11,7 +11,7 @@ import {
   addCardLike,
   removeCardLike,
   getUserData,
-} from "../../utils/api.js";
+} from "../../utils/api";
 import { registerUser, loginUser, checkToken } from "../../utils/auth";
 import Header from "../Header/Header";
 import Main from "../Main/Main";

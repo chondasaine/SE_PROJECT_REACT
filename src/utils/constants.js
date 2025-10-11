@@ -1,3 +1,4 @@
+/* global process */
 export const weatherOptions = [
   {
     day: true,
